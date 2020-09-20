@@ -1,0 +1,23 @@
+{
+  "name": "worker",
+  "version": "1.0.0",
+  "description": "Worker project to update the redis data",
+  "author": "Abhimanyu Kolakotla",
+  "license": "ISC",
+  "main": "index.js",
+  "dependencies": {
+    "redis": "*"
+  },
+  "devDependencies": {
+    "expect.js": "^0.3.1",
+    "mocha": "*",
+    "nodemon": "*",
+    "nyc": "^15.1.0"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "mocha --recursive ./tests/*.js",
+    "coverage": "nyc mocha --recursive ./tests/*.js --timeout=3000",
+    "dev": "nodemon"
+  }
+}

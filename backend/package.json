@@ -1,0 +1,28 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Backend project to provide the REST Api for frontend",
+  "author": "Abhimanyu Kolakotla",
+  "license": "ISC",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "pg": "^8.3.3",
+    "redis": "*"
+  },
+  "devDependencies": {
+    "expect.js": "^0.3.1",
+    "mocha": "*",
+    "nodemon": "*",
+    "nyc": "^15.1.0",
+    "sinon": "^9.0.3"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "mocha --recursive ./tests/*.js",
+    "coverage": "nyc mocha --recursive ./tests/*.js --timeout=3000",
+    "dev": "nodemon"
+  }
+}
