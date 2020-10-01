@@ -2,7 +2,7 @@ const redis = require('redis');
 const keys = require('./keys');
 
 var redisClient = null;
-var subscriber = null;
+var publisher = null;
 
 // Connect to redis
 function connect() {
@@ -11,12 +11,12 @@ function connect() {
         port: keys.REDIS_PORT
     });
 
-    subscriber = redisClient.duplicate();
+    publisher = redisClient.duplicate();
 }
 
 function getAll() {
     return new Promise((resolve, reject) => {
-        response = subscriber.hgetall('values', (err, data) => {
+        response = redisClient.hgetall('values', (err, data) => {
             if(err) {
                 reject(err);
             }
@@ -25,7 +25,16 @@ function getAll() {
     });
 }
 
+function publish(data) {
+    if(publisher == null) {
+        connect()
+    }
+    redisClient.hset('values', data, 'Nothing yet!'); // Store the index
+    publisher.publish('insert', data); // Send a event for worker to start working
+}
+
 module.exports = {
     connect: connect,
-    getAll: getAll
+    getAll: getAll,
+    publish: publish
 }

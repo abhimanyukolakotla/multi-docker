@@ -13,10 +13,16 @@ describe('redis-services tests', () => {
         quit: () => {
             console.log(`mocked quit method`);
         },
+        hgetall: (key, cb) => {
+            return cb(null, [1, 2, 3, 4, 5])
+        }, //() => [1, 2, 3, 4, 5]
+        hset: (key, data, default_value) => {
+            console.log('Publishing key, data and default value: ', key, data, default_value)
+        },
         duplicate: () => {
-            return {
-                hgetall: (key, cb) => {
-                    return cb(null, [1, 2, 3, 4, 5])
+            return {                
+                publish: (key, data) => {
+                    console.log('Publishing key and value: ', key, data)
                 }//() => [1, 2, 3, 4, 5]
             }
         }
@@ -27,5 +33,11 @@ describe('redis-services tests', () => {
             expect(response).to.be.eql([1, 2, 3, 4, 5]);
             done();
         });
+    });
+
+    it('test publish', (done) => {
+        redisService.connect();
+        redisService.publish(10);
+        done();
     });
 })

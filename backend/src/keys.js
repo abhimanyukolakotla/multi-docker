@@ -1,11 +1,11 @@
 const keys = {
     REDIS_HOST: process.env.REDIS_HOST,
     REDIS_PORT: process.env.REDIS_PORT,
-    POSTGRES_HOST: process.env.POSTGRES_HOST,
-    POSTGRES_PORT: process.env.POSTGRES_PORT,
-    POSTGRES_USERNAME: process.env.POSTGRES_USERNAME,
-    POSTGRES_PASSWORD: process.env.POSTGRES_PASSWORD,
-    POSTGRES_DB: process.env.POSTGRES_DB
+    POSTGRES_HOST: process.env.PGHOST,
+    POSTGRES_PORT: process.env.PGPORT,
+    POSTGRES_USERNAME: process.env.PGUSER,
+    POSTGRES_PASSWORD: process.env.PGPASSWORD,
+    POSTGRES_DB: process.env.PGDATABASE
 }
 
 module.exports = keys;
