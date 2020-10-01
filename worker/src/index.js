@@ -5,14 +5,14 @@ const fib   = require('./fib');
 const redisClient = redis.createClient({
     host: keys.REDIS_HOST,
     port: keys.REDIS_PORT,
-    retry_strategy: () => 10000
+    retry_strategy: () => 1000
 });
 
 const subscriber = redisClient.duplicate();
 
-redisClient.on('connect', () => {
+/* redisClient.on('connect', () => {
     console.log("Connected");
-});
+}); */
 
 subscriber.on("subscribe", function(channel, count) {
     console.log("Subscribed")
@@ -27,4 +27,4 @@ subscriber.on("message", function(channel, message) {
     console.log('Message received:', message);
 });
 
-subscriber.subscribe("vt-fib");
+subscriber.subscribe("insert");

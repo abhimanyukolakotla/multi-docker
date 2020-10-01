@@ -10,4 +10,5 @@ RUN npm install
 COPY . .
 
 # Default command of this image
-CMD ["npm", "run", "test"]
+# CMD ["npm", "run", "test"] # USE THIS ONLY FOR RUNNING TESTS
+CMD ["npm", "run", "start"] 

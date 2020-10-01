@@ -6,4 +6,6 @@ RUN npm install
 
 COPY . .
 
-CMD ["npm", "run", "test"]
+# CMD ["npm", "run", "test"]  # USE THIS TO RUN ONLY TESTS
+
+CMD ["npm", "run", "start"]

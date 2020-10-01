@@ -6,4 +6,5 @@ COPY ./package.json .
 RUN npm install
 COPY . .
 
-CMD ["npm", "run", "test", "--", "--watchAll=false"]
+# CMD ["npm", "run", "test", "--", "--watchAll=false"]  # USE THIS FOR TEST CASES IN DEV MODE.
+CMD ["npm", "run", "start"]
