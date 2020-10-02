@@ -45,7 +45,7 @@ export default class Fib extends React.Component {
     }
 
     renderSeenIndexes() {
-        return this.state.seenIndexes.map(({index}) => index).join(', ');
+        return this.state.seenIndexes && this.state.seenIndexes.map(({index}) => index).join(', ');
     }
 
     renderCalculatedValues() {
