@@ -2,4 +2,4 @@
 docker-compose up --build
 
 Access application at
-http://localhost:3000
+http://localhost:3050
