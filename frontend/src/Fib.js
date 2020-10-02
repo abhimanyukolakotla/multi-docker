@@ -34,7 +34,7 @@ export default class Fib extends React.Component {
 
     handleSubmit = async (event) => {
         event.preventDefault();
-        if(this.state.index == '') {
+        if(this.state.index === '') {
             return;
         }
         axios.post('/api/values', {
