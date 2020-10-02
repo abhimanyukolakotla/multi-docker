@@ -1,0 +1,26 @@
+sudo: required
+services:
+    - docker
+
+before_install:
+    - docker build -t abhimanyukolakotla/react-test-backend -f ./backend/Dockerfile.dev ./backend
+    - docker build -t abhimanyukolakotla/react-test-worker -f ./worker/Dockerfile.dev ./worker
+    - docker build -t abhimanyukolakotla/react-test-frontend -f ./frontend/Dockerfile.dev ./frontend
+
+scripts:
+    - docker run -e CI=true abhimanyukolakotla/react-test-backend npm run test
+    - docker run -e CI=true abhimanyukolakotla/react-test-worker npm run test
+    - docker run -e CI=true abhimanyukolakotla/react-test-frontend npm run test
+
+after_success:
+    - docker build -t abhimanyukolakotla/multi-backend ./backend
+    - docker build -t abhimanyukolakotla/multi-worker ./worker
+    - docker build -t abhimanyukolakotla/multi-frontend ./frontend
+    - docker build -t abhimanyukolakotla/multi-nginx ./nginx
+    # Login to Docker Hub
+    - echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_ID" --password-stdin
+    # Push images to Docker Hub
+    - docker push abhimanyukolakotla/multi-backend
+    - docker push abhimanyukolakotla/multi-worker
+    - docker push abhimanyukolakotla/multi-frontend
+    - docker push abhimanyukolakotla/multi-nginx
